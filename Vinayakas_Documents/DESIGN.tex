@@ -1,0 +1,148 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{			Green Team}
+\def \CapstoneTeamNumber{		11}
+\def \GroupMemberOne{			Omar Elgebaly}
+\def \GroupMemberTwo{			Xiaoyi Yang}
+\def \GroupMemberThree{			Vinayaka Thompson}
+\def \CapstoneProjectName{		Real-time Seed Identification}
+\def \CapstoneSponsorCompany{	Oregon State University Crop Science Department}
+\def \CapstoneSponsorPerson{	Daniel Curry}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{	%	Problem Statement
+				%Requirements Document
+				%Technology Review
+				Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	%\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge Design Document \par
+            {\large\today}\par
+			{\large CS461 Fall 2017}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by Omar Elgebaly}\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract    
+
+
+
+
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+
+\section{Introduction}
+
+This project has been split into four distinct stages: data collection, data preprocessing, data training, and data testing. Vinayaka Thompson will be responsible for data collection. Omar Elgebaly will be responsible for data preprocessing and data training, since these two are heavily intertwined. Xiaoyi will be responsible for data testing. 
+
+\section{Data Collection}
+
+\subsection{Required Technology}
+
+\subsection{Design Strategy}
+
+\section{Data Preprocessing}
+
+In this phase, we will need to preprocess the data we have collected. Learning algorithms generally benefit from standardization of the dataset as many of them assume the data is normally distributed, which is not necessarily the case.
+
+\subsection{Required Technology}
+
+\subsection{Design Strategy}
+Since we have opted to use Tensorflow as a learning framework for now, we can use Tensorflow's built-in functions for image feature scaling and normalization. Tensorflow has an API (tf.image.per\_image\_standardization) that will linearly scale images to have zero mean and unit variance [1]. It is important we know the model we plan to train on and it's limitations. Our chosen model, inception\_resnet\_v2, requires our input images to have color channels from [-1,1]. The default color channel is normally from [0, 255]. The problem with this is that the input is much larger than the network expects and will therefore be biased towards certain categories with more weight. 
+
+\section{Data Training}
+
+Once the data has been collected and gone through the necessary preparation to be trained in the classifier, we can commence the data training stage. 
+
+In this phase, the preprocessed image data will be fed into a classifier that will learn the data. As of now, our preliminary goal is to have a dataset of 10,000 images. The model of classifier we plan on using is Google's Inception-ResNet-v2 architecture. It is a state of the art learning model that is based on a deep convolutional neural network. We plan to use this model with the Tensorflow framework. One of the advantages of using this model is that it supports both Python and C++. One of the main obstacles we will face is the time it takes to train 10,000 images. Even with the Jettson processor provided to us, it could take a few days to train all of the data. The initial goal is to attempt to use it with the Python implementation of the image classifier. If we find that it is too slow, we will use the C++ version as C++ is an objectively better performing language with regards to speed. Tensorflow also has multi-GPU support, which we may employ if we can muster the resources to speed up the training speed.
+
+We plan on commencing this stage as early as possible, ideally January 20th. It is important we give ourselves ample time to test as it is a long process. 
+
+\section{Data Testing}
+
+After the training phase has been completed, our program should be able to recognize whether a seed is an off-type. The testing phase has two parts: Early Model Testing and Final Model Testing. The early model test will be used often. We plan on starting the early model test February 1st. 
+
+\subsection{Required Technology}
+The technology that will be used in this phase will be our Jettson 
+
+\subsection{Early Model Test}
+The early model test will be used to determine whether the program was properly trained on the dataset of images. The purpose of the early model test is to do a quick, preliminary test to see if the software will be able to differentiate an off-type from the target seed, which is Tall Fescue. If the early model testing stage is successful, we can move on to the final model testing stage. 
+
+This type of test works by manually inputting a set of 10 images of Tall Fescue seed and a set of 10 images of the more common off-types we may encounter. If we manage to get a Top-1 accuracy of 70\%, we can commence testing by entering the final model testing stage. The Top-1 percentage indicates the probability of the classifier’s top guess for the image being correct [3]. The reason for having a preliminary stage before commencing final testing is to ensure we do not waste time testing a large batch only to discover that there is an anomaly or bug that is preventing us from reaching our desired Top-1 accuracy. The preliminary stage will allow us to quickly figure out if something is wrong. If we do not get our desired Top-1 accuracy, it means we may need to retrain more images, need better image preprocessing, or need to modify parameters.  
+
+The Early Model Test can be used to determine if there are bugs in the program. However, it cannot be used as a means to test accuracy because the sample size is too small. We plan on commencing the early model test  
+
+\subsection{Final Model Test}
+
+Our final model testing stage is the test used to determine if our classifer works and can accurately identify off-type seeds in real-time. The goal of the final model test is to ensure our program reaches our target Top-1 accuracy rate, which is 80\%. This test will utilize the same approach as our data collection with regards to capturing images of the seeds.
+
+As mentioned before, we are working in tandem with a Mechanical Engineering group. They have designed a funnel system that is connected to a vibrating table. To run our final model tests, we insert our seeds through the funnel onto the vibrating table. The vibrating table will then take the seeds to the image capture area. The image capture area is the surface area that is within the suspended camera's field of view. When a batch of seeds passes through the image capture area, the camera will constantly be taking pictures and inputting them into the computer via a USB connection. As the camera is constantly feeding images of seeds in real-time to the computer, the classifier will output the probability of a seed matching Tall Fescue. If the probability that a seed is Tall Fescue is 80\%, then we can mark that seed as safe. The constraint we must work around is we need to minimize false positives as even a few can impact the quality of the seed batch. 
+
+When the classifier outputs a probability lower than 80\%, that means there are likely off-types within the batch. The classifier will return false and send a signal from the computer to the testing setup. This signal will indicate that there is an off-type and that batch of seeds will be trashed. The reason behind trashing the seeds if there is even one off-type in the batch is because our client stated he would prefer false negatives over false positives. False positives can ruin the integrity of the batch and make it unsellable. 
+
+This testing phase will commence once we have our first prototype. Our estimated date is February 15th. 
+
+\section{Conclusion}
+\section{References}
+
+[1] “Tf.image.per\_image\_standardization.” per\_image\_standardization, TensorFlow, https://www.tensorflow.org/api\_docs/python/tf/image/per\_image\_standardization . 
+
+\end{document}
+
+
+
+
+

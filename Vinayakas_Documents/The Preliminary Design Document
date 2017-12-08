@@ -1,0 +1,213 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{pgfgantt}
+%\usepackage{titlesec}
+\usepackage{lscape}
+\usepackage{cite}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{            Green Team}
+\def \CapstoneTeamNumber{        11}
+%\def \GroupMemberOne{            Omar Elgebaly}
+%\def \GroupMemberTwo{            Xiaoyi Yang}
+\def \GroupMemberThree{            Vinayaka Thompson}
+\def \CapstoneProjectName{        Real-time Seed Identification}
+\def \CapstoneSponsorCompany{    Oregon State University Crop Science Department}
+\def \CapstoneSponsorPerson{    Daniel Curry}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{        %Requirements Document
+                %Requirements Document
+                Technology Review
+                %Design Document
+                %Progress Report
+                }
+
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil     \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill        \makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil        \makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill    \makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        %\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            {\large CS461 Fall 2017}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par
+            \vspace{5pt}
+            {\Large
+%                \NameSigPair{\GroupMemberOne}\par
+ %               \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract
+
+
+        \end{abstract}
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+\section{Suporting Technologies} % i need a proper name for this section but i can't think of anything at the moment.
+
+In any project of scale there is a framework that supports the project. 
+Here that framework is composed of 4 main parts: two of the real world and two less physical. 
+These components are the camera, the physical computational device, the operating system and the programming language.
+
+\subsection {Hardware Specs}
+
+On this project we are working with a hardware team.
+For this reason many of the decisions in the realm of hardware is outside of the realm of our direct influence. 
+That said though we are not technically working on a joint project; they were nice enough to consult us on the topic of the hardware. 
+Though most of the decisions made by the hardware team are not of direct importance to our project, we were able to get some valuable info from them. 
+Their project is based on a vibrating table with room for a lens, a small camera, a light and a small computer chip.
+
+\subsubsection{Camera Setup}
+
+As of yet we are undecided on which camera model we will be involving in our project. Our default camera is our client's; the camera is a crucial component of the end product for this project and we will need to run experiments to see if his camera works best with our code. If that camera doesn't provide good enough data then we may have to try out different models. 
+If the camera we use provides us with low quality pictures, the data may become offset because the 'alien' seeds would slip past much too often without being detected, and our project would not be a success on account of the inadequate hardware. 
+Our client has also offered a camera lens and lighting setup of his own collection to use on the project.
+We think the cameras that provide the best image quality will let the code run effectively and be viable for inclusion, having a good quality camera would be very beneficial to our project.
+This task, though small, is a barrier to many other things getting done. As all of our data collection happens over this camera we probably will talk to our client before the break if he has time so we can work with the device and see if we can get it to respond. 
+We hastily tried once in the past however we were unsuccessful in getting it to work. 
+
+\subsubsection {Computational Device}
+
+In regard to the chip we plan on getting for the device we decided that we needed something that was not only small but also very capable in image processing.
+In our hunt we looked at many small computational devices and came to the conclusion that for the reasons of availability and capability the Nevada Jettson would probably be our best option.
+The reason for this is because unlike many boards that run primarily with CPU's the Jettson has GPU's that we think will play a crucial role in reaching the 14 seed per second mark that we want to hit. 
+That said it should not matter if we get the more powerful tx2 vs it's less powerful brother the tx1 but the faster the chip the better the end result can be.
+In addition Nvidea offers a fairly intriguing development platform called the Jetpack. 
+These as a group are some of the most popular technologies required in AI development that are packaged together.
+Potentially this could give us a stable development environment to work with and allow us to get to figuring out the program faster.
+For these reasons I am fairly certain that we will be using this chip. 
+Thus in some ways the time-line for this segment is already over.
+That said, over break/first week back we need to talk to our professor about acquiring one or obtain one ourselves. 
+
+\subsection {Operating system}
+
+We needed an operating system that we could build our project on. The best OS for our project is one that has a high performance capability because the system needs to process images fast. 
+Though we are prioritizing speed, we didn't want the system to be too large and we didn't want to have to increase the amount of work in the project by using an operating system that would require a lot of finagling to be compatible with our software. The system of choice then would also have to be small, easy to use along with having a high performance.
+BSD is incompatible with the Jettson as it is, and would require a lot of work to get it it to support the hardware, Windows also does not support the Jettson and because Windows is a Microsoft product, we probably wouldn't be able to get it to run on that OS at all. Ubuntu, however, is the officially supported distro of Linux for the Nvidia chip and works with the development pack that should allow us to get the most power out of the chip.\cite{cuda} So the OS we have decided to use is Linux, more specifically the distro of Linux known as Ubuntu.
+
+\subsection {Programming language}
+
+For the language part of our project it came down to which one supported our project's speed, processes and software. 
+Besides the previously mentioned requirements, our client wanted us to try to keep the project's product able to receive updates in the future. 
+The client mentioned that there is a chance that some staff that interact with the product while in this stage of development may or may not have experience with coding or with the project in general.
+Speed and efficiency are where our main focus lay within the project though, our client wants a near perfect efficiency in the sorting and has expressed the desire to have the seeds sorted faster than 14 per second.
+So even though one language or another might have been easier to use than the others or more adaptable across software; we have to make a choice for the language that offers us more of what we need. 
+C++ offers more benefits to our project than some other languages: we all know the language, it has a faster processing time if done right, its already known for it's use in image processing and it makes the enablement of the Nvidia chip's fullest potential possible with the right implementation. But it is harder to use. 
+Python on the other hand is much easier to use, but only one of us is familiar with it, its slower and because of this we may have to switch to C++ anyways because the language just doesn't have the capabilities to process as quickly as we need.
+
+Because there seem to be two viable options it makes sense to us to do experiments with both at the start of next term so that we may find which one suites our problem better.
+
+
+\section{Data Collection}
+
+
+Data collection though at face value is quite straight forward when you look at it, this discipline is central to the success of our endeavor. 
+For that reason there should be no haste in our search for the perfect solution. 
+That said, we seem to have stumbled across a a system that may work for us. 
+This solution is based of the Nvidia Jetpack system.
+Nvidia created a package of tools that it says will help people build AI. 
+These technologies are some of the most popular libraries for machine learning and computer vision.
+Augmented with there CUDA technology to make it take advantage of the gpu.
+In addition it is one all encapsulating installation which we feel we could expadite environment setup so that we can get working on the computer vision problems as soon as possible.
+
+In this group of technologies there is a piece of software called vision works. 
+This software is an extention of the Chronos OpenVX standard and can work with popular tools like openCV if need be. 
+We feel that this is a good option because it is approved and tested by Nvidia to take advantage of the GPU's on those chips.
+Which should help speed up training time and allow us to better optimize the system. 
+Though We have not actively started work on this system just yet I feel that over break I should probably start working on it such that upon arrival back to campus we can start implementation of the data collection technologies.
+As it takes a large amount of data to train an AI it would be beneficial to us to be able to use the device as a data acquisition system. 
+This lets us create larger datasets and test the data acquisition module of the build.
+Going with this system however does have one glaring pit fall.
+If we go this rout we will be creating a system that must be completed for further progress. 
+This makes it a choke point that could halt our progress if it is not addressed in a timely manner.
+This is why I emphasize working on it over winter break as its hasty completion may save us from wasting time down the road.
+
+
+
+
+
+
+
+
+\newpage
+\begin{landscape}
+\section{Gantt Chart}
+
+\begin{ganttchart}{1}{30}
+
+\gantttitlelist{2017}{10}
+\gantttitlelist{2018}{20} \\
+
+\gantttitlelist{"Fall","Winter","Spring"}{10} \\
+
+\gantttitlelist{1,...,10}{1}
+\gantttitlelist{1,...,10}{1}
+\gantttitlelist{1,...,10}{1}\\
+
+%\ganttgroup{Group 1}{1}{7} \\
+\ganttbar{Research}{1}{10} \\
+\ganttbar{Camera Selection}{10}{11}\\
+\ganttbar{Data collection algorithm development}{10}{12}\\
+\ganttbar{Data collection algorithm testing}{12}{13}\\
+\ganttbar{Data cleaning algorithm development}{11}{13}\\
+\ganttbar{Data cleaning testing}{13}{14}\\
+
+\ganttbar{Expansion Project}{20}{23} \\
+\ganttmilestone{Be Done}{23} \\
+
+
+%\ganttlink{elem1}{elem3}
+
+
+
+\end{ganttchart}
+\end{landscape}
+
+
+
+\newpage
+
+\bibliographystyle{ieeetr}
+\bibliography{bib}
+\end{document}

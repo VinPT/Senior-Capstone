@@ -1,0 +1,266 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{pgfgantt}
+\usepackage{titlesec}
+\usepackage{lscape}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{            Green Team}
+\def \CapstoneTeamNumber{        11}
+\def \GroupMemberOne{            Omar Elgebaly}
+\def \GroupMemberTwo{            Xiaoyi Yang}
+\def \GroupMemberThree{            Vinayaka Thompson}
+\def \CapstoneProjectName{        Real-time Seed Identification}
+\def \CapstoneSponsorCompany{    Oregon State University Crop Science Department}
+\def \CapstoneSponsorPerson{    Daniel Curry}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{        Requirements Document
+                %Requirements Document
+                %Technology Review
+                %Design Document
+                %Progress Report
+                }
+
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil     \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill        \makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil        \makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill    \makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        %\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            {\large CS461 Fall 2017}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract
+                The purpose of this project is to identify off-type seeds in real-time.
+                The seeds go through a conveyor belt with a camera constantly feeding images to the classifier via a USB connection to a computer.
+                If an off-type is detected, the computer will send a signal and the conveyor belt will trash any seeds in the picture involving a bad seed, The client allows false negatives but limits false positives.
+                The Scope Of this project involves implementing a machine learning to identify seeds in real-time.
+                Anything beyond the software is out Of this project's scope.
+                The classifier Should binary.
+                This means It only has to determine if a seed IS an off-type or desired type, Which is Tall Fescue In this case.
+
+        \end{abstract}
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+
+\section{Introduction}
+
+\subsection{Purpose}
+In the world today there is a need to sort seed.
+Reasons for sorting seed may include grading for pricing purposes or cleaning for reseeding.
+This is an arduous task requiring, for example, a researcher to go through the seed on by one under a microscope to determine the seed type and sort it.
+The difficulty is compounded when working will small seeds like those produced by grass plants.
+Usually, 90\% or more of the seed is desired seed.
+Thus we are working on a device to reduce the work required to sort seed with a focus on sorting grass seed.
+The product we are working on is being designed for the OSU Seed Lab, making the lab-techs working for them our primary audience.
+There is, however, a secondary group that this device could be targeted to namely farmers needing to clean small batches of seed for reseeding and other such use cases.
+
+\subsection{Scope}
+The product to be created by our team is a program that is to work with a theoretical set of hardware components to sort seed.
+This program is designed to take a photo of the seed (in this case grass) process it locally and then send to the device signal to the hardware.
+The algorithm we make should be able to accurately identify alien seed within a minimum 80\% margin of error.
+When testing seed the fully assembled device should be able to process about 14 seeds per Second.
+The client would like it to be able to process a batch Of 25,000 seeds in approximately 30 minutes.
+Additionally, there was a desire that the device have some sort of user interface which would allow the user to change values and get feedback.
+When working on the above program we need to build it in such a way that the following extensions to our product are possible.
+The first is the ability for the user to train the device or be able to switch seed type through some user installable upgrade.
+The second was categorizing the of-type seed thus giving an estimation of what types of alien seeds are present in the sample.
+Should we accomplish all of the above requirements to the best of our ability with significant time left before the deadline the client would like us to start on one of the two extension projects.
+
+\subsection{Definitions acronyms and abbreviations}
+
+Client: In this case, our client is OSU Seed Lab
+
+Lab-tech: Someone who sorts and identifies seed for OSU Seed Lab.
+
+Researcher: Someone who works at OSU Seed Lab.
+
+OSU: Oregon State University
+
+of-type: unwanted seed
+
+\subsection{References}
+https://developer.nvidia.com/deep-learning-frameworks
+
+https://developer.nvidia.com/deep-learning-software
+
+https://developer.nvidia.com/cuDNN
+
+https://www.microsoft.com/en-us/cognitive-toolkit/
+
+https://elinux.org/Jetson\_TK1\#About\_Jetson\_TK1
+
+%\subsection{Overview}
+% i tried to write one but it felt wrong
+
+\section{Overall description}
+
+\subsection{Product perspective}
+
+% I don't understand the section below
+%\subsubsection{System Interfaces}
+%The software is to be built on a
+%unfinished
+\subsubsection{User Interfaces}
+The user will be interacting with the product in 2 primary ways.
+The first is quite simple.
+To run the base device the user must fill a hopper at one end of the device with the seed to be sorted and then turn the device on.
+The second way the user may interact with the device is through a screen should we start work on the user interface extension project.
+\subsubsection{Hardware Interfaces}
+We are using at least 3 hardware components these are the camera, the Nvidia Jetson chip, and the conveyor belt.
+There is also the option to add more memory through a disk drive.
+The way we intend to interface with the camera is over USB.
+If USB is not fast enough we may try to switch to the CSI-2 MIPI camera serial interface.
+The conveyor, on the other hand, will be communicated with over GPIO pins.
+
+\subsubsection{Software Interfaces}
+Our Product will have three main levels of software interfaces.
+
+The first is the operating system.
+Though the current assumption is we are using NVIDIA's a modified Ubuntu 13.04 Linux distro.
+
+The second level of software interfaces is the libraries we are going to use.
+We are using A Jetson computer thus we will probably want to use cuDNN to get better GPU acceleration and OpenCV to help see the seeds.
+As for the library, we are going to pick to do the deep learning we are still testing between Caffe2, CNTK, TensorFlow, Torch and dmlc mxnet.
+Because there are many choices with the deep learning library and it is such a big part of the project we plan to look into this in more detail and run some tests before picking one.
+The package we will be using is the most modern supported version of the library we pick as of November 2017.
+
+In addition, we have the requirement to build our system with two expansion projects in mind.
+To allow the interface expansion and changing the seed we are sorting we are simply exposing data that would be useful in that case when building our classes.
+To classify the bad seed we are exposing all of the bad seed pictures and leaving them in a file on the device such that it can be accessed easily.
+
+\subsubsection{Memory constraints}
+The device we are working on has 2GB ram as primary storage.
+The secondary storage option on this device is provided by a full-size sd slot and 16GB fast eMMC 4.51 onboard the chip.
+This limits our secondary storage the size of sd card we get up to and including 512Gb.
+There is also mini-PCIe and SATA port that can be used to expand the storage space on the device should we need it.
+There should be 1 USB 3.0 port on the device this port will probably be used for the camera limiting our ability to use a flash drive for extended secondary storage.
+
+\subsubsection{Operations}
+The basic operations of this device are as simple as turning it on.
+This will not be the case if someone creates the expansion project.
+If someone does work on that project there will be some sort of screen added to the device allowing the user to interact with the added functionality.
+
+\subsection{Product functions}
+The primary function of this product to sort grass seed with the requirement of removing 80\% or more of the desired seed from the original seed mix with zero false positives.
+In this case, Tall Fescue and Perennial Ryegrass are the hardest two we will need to sort; Thus it the focus of this project.
+In the future, the client expressed a desire to have the device determine the type of each seed running through the device however as they require 100\% success this is something beyond the scope of this project.
+
+\subsection{User characteristics}
+There are two target users for this device.
+The first and primary user is the lab workers at the Seed Lab.
+Where the user would be some sort of lab tech who would be using the device to reduce their workload.
+This user would be trained professionals hired by the Seed Lab.
+These users would have in-depth knowledge about the process the device is trying to automate but may have little to no computer experience.
+The other potential user is a seed enthusiast in the public.
+Our client said something about wanting to, potentially in the future, merge capstone projects and expand the project into some sort of product that could be used by anyone who wanted to sort seed.
+This user could be at any stage of understanding the process the device is trying to automate and may or may not have computer experience.
+
+\subsection{Constraints}
+This project has a few true constraints provided by the client.
+These constraints are we must have no false positives.
+The device must be able to remove at least 80\% of the good seed from the bad seed with no false positives.
+It has been stressed that there must be no alien seed in the good seed at the end of the devices run.
+We must program it to identify about 14 seeds per second.
+This means it should be able to process a batch of 25,000 seeds in approximately 30 minutes.
+In addition to this, the client expressed a desire for some additional systems in the future and wanted us to take that into consideration when building our system.
+
+There are two future projects we discussed with the client.
+The first is allowing the client to change the seed sorted on the device by letting the client train the device or install some sort of an update to the device.
+The other possible expansion project was to identify the bad seed that was removed from the good seed.
+
+\subsection{Assumptions and dependencies}
+Though our project has some equipment we can use from a previous project the client seems to be wanting us to start from scratch.
+This reduces the dependencies our group will have to contend with.
+The only two potential dependencies are a camera system the last group was able to setup and get working and the test bed as the only prebuilt system we have access to the old group's project.
+
+The assumptions we are making are as follows
+The first assumption is that we don’t need to build any of the hardware components.
+We are also assuming that we only need to send a true-false signal to the hardware team.
+Finally, we assume that the hardware specs are what we specify regardless of what the mechanical team makes.
+
+\subsection{External Interfaces}
+The base project has no true user-facing external interface but does have an interface with the hardware teams project.
+This interface is a simple true-false signal sent through one of the GPIO pins.
+
+
+\newpage
+\begin{landscape}
+\section{Gantt Chart}
+
+\begin{ganttchart}{1}{30}
+
+\gantttitlelist{2017}{10}
+\gantttitlelist{2018}{20} \\
+
+\gantttitlelist{"Fall","Winter","Spring"}{10} \\
+
+\gantttitlelist{1,...,10}{1}
+\gantttitlelist{1,...,10}{1}
+\gantttitlelist{1,...,10}{1}\\
+
+%\ganttgroup{Group 1}{1}{7} \\
+\ganttbar{Research}{1}{6} \\
+\ganttbar{Camera Testing}{5}{8}\\
+\ganttbar{Algorithm Testing}{5}{10}\\
+\ganttbar{Algorithm Implementation}{10}{23} \\
+\ganttbar{Expansion Project}{20}{23} \\
+\ganttmilestone{Be Done}{23} \\
+
+
+%\ganttlink{elem1}{elem3}
+
+
+
+\end{ganttchart}
+\end{landscape}
+
+\end{document}
