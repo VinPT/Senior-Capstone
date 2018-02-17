@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}Data Collection - Xiaoyi Yang}{2}
+\contentsline {section}{\numberline {2}Data Preparation - Vinayaka Thompson}{4}
+\contentsline {section}{\numberline {3}Training - Omar Elgebaly}{5}
+\contentsline {section}{\numberline {4}Conclusion}{9}
