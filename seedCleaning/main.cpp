@@ -183,29 +183,29 @@ bool segment(std::string pInput, int pOutput){
 
 	cv::moveWindow("Display window",0,0);
 
-	cv::imshow("Display window", image);
-	cv::waitKey(0);
-	cv::imshow("Display window", hsvImage);
-	cv::waitKey(0);
+////cv::imshow("Display window", image);
+////cv::waitKey(0);
+////cv::imshow("Display window", hsvImage);
+////cv::waitKey(0);
 
 	cv::inRange(hsvImage, cv::Scalar(lowH, lowS, lowV), cv::Scalar(highH, highS, highV), thresholdImage);
 
 	
-	cv::imshow("Display window", thresholdImage);
-	cv::waitKey(0);
+////cv::imshow("Display window", thresholdImage);
+////cv::waitKey(0);
 
 	cv::dilate(thresholdImage, thresholdImage, cv::Mat(), cv::Point(-1,-1), 2);
 	cv::erode(thresholdImage, thresholdImage, cv::Mat(), cv::Point(-1,-1), 4);
 	cv::dilate(thresholdImage, thresholdImage, cv::Mat(), cv::Point(-1,-1), 6);
 	
-	cv::imshow("Display window", thresholdImage);
-	cv::waitKey(0);
+////cv::imshow("Display window", thresholdImage);
+////cv::waitKey(0);
 	
 	cv::findContours(thresholdImage, contours, cv::RETR_LIST, cv::CHAIN_APPROX_NONE);
 	
-	cv::drawContours(image, contours, -1, (0,0,255), 5);
-	cv::imshow("Display window", image);
-	cv::waitKey(0);
+//////cv::drawContours(image, contours, -1, (0,0,255), 5);
+////cv::imshow("Display window", image);
+////cv::waitKey(0);
 
 	
 	
@@ -217,10 +217,10 @@ bool segment(std::string pInput, int pOutput){
 		box = boundingRect(contours[i]);//minAreaRect(contours[i]);/
 		cr = cv::Mat(image, box);
 		
-		cv::rectangle(image, box, (255,0,0), 3, cv::LINE_8, 0);
+//////cv::rectangle(image, box, (255,0,0), 3, cv::LINE_8, 0);
 		
-		cv::imshow("Display window", image);
-		cv::waitKey(0);
+////cv::imshow("Display window", image);
+////cv::waitKey(0);
 		
 		cv::imwrite(imname.str(), cr, comParams);
 
